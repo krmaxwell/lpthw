@@ -43,7 +43,7 @@ class EscapePod(Scene):
         pass
 
 
-class Map(Object):
+class Map(object):
 
     def __init__(self, start_scene):
         pass
