@@ -30,19 +30,49 @@ class Engine(object):
 class Death(Scene):
 
     def enter(self):
-        pass
+        print "Wipe yourself off - you dead."
+        exit(1)
 
 
 class CentralCorridor(Scene):
 
     def enter(self):
-        pass
+        print "ERMAGERD aliens out to getcha. Whatcha gon' do?"
+        action = raw_input("> ")
+
+        if "shoot" in action:
+            print "You shoot, you score. Then the rest blast you."
+            return 'death'
+        elif "dodge" in action:
+            print "You can't dodge a laser, silly."
+            return 'death'
+        elif "joke" in action:
+            print "The aliens laugh so hard you get away."
+            return 'laser_weapon_armory'
+        else:
+            print "lolwut."
+            return 'central_corridor'
 
 
 class LaserWeaponArmory(Scene):
 
     def enter(self):
-        pass
+        print "You need to unlock the code. 3 digits, 10 tries, go."
+        code = "%d%d%d" % (randint(1,9), randint(1,9), randint(1,9))
+        guess = raw_input('[keypad]> ')
+        guesses = 0
+
+        while guess != code and guesses < 10:
+            print "BZZT wrong!"
+            guesses += 1
+            guess = raw_input('[keypad]> ')
+
+        if guess == code:
+            print "You set you up the bomb and head to the bridge."
+            return 'the_bridge'
+        else:
+            print "Too bad. You will die now."
+            return 'death' 
 
 
 class TheBridge(Scene):
