@@ -78,13 +78,33 @@ class LaserWeaponArmory(Scene):
 class TheBridge(Scene):
 
     def enter(self):
-        pass
+        print "How do you want to handle this?"
+        action = raw_input('> ')
+
+        if 'throw' in action:
+            print "It'll go off, sure, but as soon as it hits the deck. At least they'll die too."
+            return 'death'
+        elif 'place' in action:
+            print "Good job. Now let's blow this joint and go home."
+            return 'escape_pod'
+        else:
+            print "lolwut."
+            return 'the_bridge'
 
 
 class EscapePod(Scene):
 
     def enter(self):
-        pass
+        print "5 pods here - which one?"
+        good_pod = randint(1,5)
+        guess = raw_input("[pod]> ")
+
+        if int(guess) != good_pod:
+            print "Space jelly"
+            return 'death'
+        else:
+            print "You win!"
+            return 'finished'
 
 
 class Map(object):
