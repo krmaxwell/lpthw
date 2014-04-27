@@ -59,6 +59,7 @@ class LaserWeaponArmory(Scene):
     def enter(self):
         print "You need to unlock the code. 3 digits, 10 tries, go."
         code = "%d%d%d" % (randint(1,9), randint(1,9), randint(1,9))
+        print code
         guess = raw_input('[keypad]> ')
         guesses = 0
 
@@ -97,6 +98,7 @@ class EscapePod(Scene):
     def enter(self):
         print "5 pods here - which one?"
         good_pod = randint(1,5)
+        print good_pod
         guess = raw_input("[pod]> ")
 
         if int(guess) != good_pod:
@@ -107,6 +109,12 @@ class EscapePod(Scene):
             return 'finished'
 
 
+class Finish(Scene):
+
+    def enter(self):
+        exit(0)
+
+
 class Map(object):
 
     scenes = {
@@ -114,7 +122,8 @@ class Map(object):
               'laser_weapon_armory': LaserWeaponArmory(),
               'the_bridge': TheBridge(),
               'escape_pod': EscapePod(),
-              'death': Death()
+              'death': Death(),
+              'finished': Finish()
     }
 
     def __init__(self, start_scene):
